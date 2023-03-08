@@ -43,7 +43,7 @@ int main() {
         cout << "Detecting eyes..." << endl; 
         frame = CV.rotate(frame, 180);
         eyeRIO = CV.detectEyes(frame, eyeCascade);
-
+	// stops program if esc key pressed
         if (waitKey(1) == 27) {
             cout << "Program terminated." << endl;
             break;
@@ -69,16 +69,19 @@ int main() {
 		
 		printf("Detecting Eye Detections");
 		
-		
+	// assign frame values 	
         cap.read(frame);
-        if (frame.empty()) break;
+	if (frame.empty()) break;
         if (eyeRIO.empty()) break;
         frame = CV.rotate(frame, 180);
         frame = frame(eyeRIO);
         CV.detectBlink(frame);
-         printf("Time: %lf seconds ----  ", (double) ((double) elapsedS + timeMS));
-         cout << "PERCLOS=" << CV.PERCLOS << endl;
-
+        // print time elapsed
+	printf("Time: %lf seconds ----  ", (double) ((double) elapsedS + timeMS));
+        // print PERCLOS 
+	cout << "PERCLOS=" << CV.PERCLOS << endl;
+	
+	// stops program if esc key pressed
         if (waitKey(1) == 27) {
             cout << "Program terminated." << endl;
             break;
